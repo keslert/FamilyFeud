@@ -1,0 +1,57 @@
+{"FamilyFeud": 
+	{
+		"Round": {
+			"Question": "Name Something You Get At The Dentist That Almost Makes The Trip Worthwhile",
+			"Answers": {
+				"Answer": {
+					"text": "Toothbrush",
+					"points": 50
+				},
+				"Answer": {
+					"text": "Candy",
+					"points": 19
+				},
+				"Answer": {
+					"text": "Clean Teeth",
+					"points": 13
+				},
+				"Answer": {
+					"text": "Sticker",
+					"points": 8
+				},
+				"Answer": {
+					"text": "Laughing Gas",
+					"points": 7
+				}
+		},
+
+		"Round": {
+			"Question": "Tell Me Something You Only Do When You’re Sick",
+			"Answers": {
+				"Answer": {
+					"text": "Nap",
+					"points": 37
+				},
+				"Answer": {
+					"text": "Vomit",
+					"points": 34
+				},
+				"Answer": {
+					"text": "Take Medicine",
+					"points": 14
+				},
+				"Answer": {
+					"text": "Eat Soup",
+					"points": 8
+				},
+				"Answer": {
+					"text": "Stay Home From Work",
+					"points": 3
+				},
+				"Answer": {
+					"text": "Go To Doctor",
+					"points": 3
+				}
+		},
+	}
+}}

@@ -1,0 +1,198 @@
+body, html {
+  background-color: #FFD33E;
+  font-family: Helvetica, Arial;
+  text-align: center;
+  width:100%;
+}
+
+section {
+  display: block;
+}
+
+figure {
+  margin: 0;
+}
+
+.answer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transition: -webkit-transform 1s;
+     -moz-transition: -moz-transform 1s;
+       -o-transition: -o-transform 1s;
+          transition: transform 1s;
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+       -o-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.answer.flipped {
+  -webkit-transform: rotateX( 180deg );
+     -moz-transform: rotateX( 180deg );
+       -o-transform: rotateX( 180deg );
+          transform: rotateX( 180deg );
+}
+
+.answer figure, .inactive {
+  display: block;
+  height: 100%;
+  width: 100%;
+  color: white;
+  line-height: 2em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+     -moz-backface-visibility: hidden;
+       -o-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.answer .front, .inactive {
+  background: #FFD33E;
+  border: 4px solid #C13237;
+  color: #C13237;
+  text-align: center;
+  outline: 2px solid #FFD33E;
+}
+
+.front span {
+  background-color: #C13237;
+  border: 2px solid #C13237;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+       -o-border-radius: 50%;
+          border-radius: 50%;
+  color: white;
+  display: block;
+  font-weight: bold;
+  font-size: larger;
+  height: 2em;
+  margin-top: -4px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 3em;
+}
+
+.answer .back {
+  background: black;
+  -webkit-transform: rotateX( 180deg );
+     -moz-transform: rotateX( 180deg );
+       -o-transform: rotateX( 180deg );
+          transform: rotateX( 180deg );
+  outline: 2px solid black;
+}
+
+.cell {
+  display: table-cell;
+}
+
+.container {
+  width: 400px;
+  height: 2em;
+  position: relative;
+  margin: 0 auto 20px;
+  -webkit-perspective: 800px;
+     -moz-perspective: 800px;
+       -o-perspective: 800px;
+          perspective: 800px;
+}
+
+.footer {
+  background: black;
+  bottom: 0;
+  color: #CBFFF6;
+  left: 0;
+  line-height: 2em;
+  padding-left: 5px;
+  position: fixed;
+  text-align: left;
+  width:100%;
+}
+
+.next {
+  float: right;
+  padding-right: 15px;
+}
+
+.score {
+  background: #C13237;
+  position: absolute;
+  right: 0;
+  width: 2em;
+}
+
+.wrapper {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  text-align: center;
+  width: 80%;
+}
+
+#background {
+  background-color: #62B2A4;
+  background-image: -webkit-radial-gradient(white 23%, transparent 24%);
+  background-image: -moz-radial-gradient(white 23%, transparent 24%);  
+  background-image: -o-radial-gradient(white 23%, transparent 24%);
+  background-image: radial-gradient(white 23%, transparent 24%);                    
+  background-size:20px 20px;
+  background-position: 0 0, 10px 10px;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+       -o-border-radius: 50%;
+          border-radius: 50%;
+  border: 12px solid #C13237;
+  display: table;
+  height: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 1024px;
+  min-height: 600px;
+  position: relative;
+  text-align: center;
+  width: 90%;
+}
+
+#rotating-answers {
+  display: table-cell;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#score {
+  background-color: black;
+  border: #FFD33E solid 3px;
+  color: #f0f060;
+  font-family: "Courier New", Courier, monospace; 
+  font-size: 90px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding-right: 10px;
+  text-align: right;
+  width: 150px;
+}
+
+#wrong {
+  position: fixed;
+  text-align: center;
+  top: 33%;
+  width: 90%;
+  z-index: 1;
+}
+
+#wrong span {
+  background-color: white;
+  border: 8px solid #C13237;
+  color: #C13237;
+  font-size: 190px;
+  height: 30%;
+  margin: 10px;
+  width: 200px;
+}
