@@ -1,22 +1,21 @@
-body, html {
-  background-color: #FFD33E;
+body {
+  background-color: #DA6666;
   font-family: Helvetica, Arial;
-  text-align: center;
-  width:100%;
 }
 
 section {
-  display: block;
+  height:38px;
+  box-sizing:border-box;
 }
 
-figure {
-  margin: 0;
+.row {
+  margin: 15px 0;
 }
 
 .answer {
   width: 100%;
-  height: 100%;
-  position: absolute;
+  height:100%;;
+  
   -webkit-transition: -webkit-transform 1s;
      -moz-transition: -moz-transform 1s;
        -o-transition: -o-transform 1s;
@@ -39,10 +38,13 @@ figure {
   height: 100%;
   width: 100%;
   color: white;
-  line-height: 2em;
+  line-height: 2.3em;
   text-align: center;
   font-weight: bold;
   font-size: 1em;
+}
+
+.answer figure {
   position: absolute;
   -webkit-backface-visibility: hidden;
      -moz-backface-visibility: hidden;
@@ -53,7 +55,6 @@ figure {
 .answer .front, .inactive {
   background: #FFD33E;
   border: 4px solid #C13237;
-  color: #C13237;
   text-align: center;
   outline: 2px solid #FFD33E;
 }
@@ -61,16 +62,13 @@ figure {
 .front span {
   background-color: #C13237;
   border: 2px solid #C13237;
-  -webkit-border-radius: 50%;
-     -moz-border-radius: 50%;
-       -o-border-radius: 50%;
-          border-radius: 50%;
+  border-radius:50%;
   color: white;
   display: block;
   font-weight: bold;
   font-size: larger;
   height: 2em;
-  margin-top: -4px;
+  margin-top: -2px;
   margin-left: auto;
   margin-right: auto;
   width: 3em;
@@ -82,11 +80,21 @@ figure {
      -moz-transform: rotateX( 180deg );
        -o-transform: rotateX( 180deg );
           transform: rotateX( 180deg );
-  outline: 2px solid black;
+  outline: 2px solid #FFD33E;
+  line-height:2.5em;
 }
 
-.cell {
-  display: table-cell;
+.answer .back .right {
+  float: right;
+  background-color: #FFD33E;
+  color:#000;
+  width: 10%;
+  height: 100%;
+}
+
+.answer .back .left {
+  float:left;
+  margin-left:8px;
 }
 
 .container {
@@ -133,7 +141,7 @@ figure {
   width: 80%;
 }
 
-#background {
+#content {
   background-color: #62B2A4;
   background-image: -webkit-radial-gradient(white 23%, transparent 24%);
   background-image: -moz-radial-gradient(white 23%, transparent 24%);  
@@ -146,36 +154,25 @@ figure {
        -o-border-radius: 50%;
           border-radius: 50%;
   border: 12px solid #C13237;
-  display: table;
-  height: 90%;
-  margin-right: auto;
-  margin-left: auto;
-  min-width: 1024px;
-  min-height: 600px;
-  position: relative;
-  text-align: center;
+  height: 480px;
+  margin:20px auto;
   width: 90%;
 }
 
-#rotating-answers {
-  display: table-cell;
-  margin: auto;
-  text-align: center;
-  vertical-align: middle;
+#board {
+  margin-top:50px;
 }
 
 #score {
   background-color: black;
   border: #FFD33E solid 3px;
   color: #f0f060;
-  font-family: "Courier New", Courier, monospace; 
-  font-size: 90px;
+  font-size: 50px;
   height: 100px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
-  padding-right: 10px;
-  text-align: right;
+  padding:10px;
+  text-align: center;
   width: 150px;
 }
 
@@ -195,4 +192,17 @@ figure {
   height: 30%;
   margin: 10px;
   width: 200px;
+}
+
+#question {
+  padding: 25px;
+  background-color: #FFF;
+  border-radius: 20px;
+  width: 97%;
+  margin: 0 auto;
+  border: solid 4px #C13237;
+  text-align: center;
+  font-size: 22px;
+  font-weight:bold;
+  letter-spacing:5px;
 }

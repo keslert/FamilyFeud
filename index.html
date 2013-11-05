@@ -1,17 +1,24 @@
 <html>
 	<title>Family Feud</title>
-	<link rel="stylesheet" href="css/family-feud.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="css/family-feud.css" type="text/css">  
 	<script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+  <script src="data.js" type="text/javascript"></script>
 	<script src="js/family-feud.js" type="text/javascript"></script>
 </head>
 
 <body>
-	<div id="background">
-		<div id="wrong"></div>
-		
-		<div id="answers"></div>
+	<div id="content">
 
-		<div id="score"></div>
+    <div id="board">
+  		<div id="wrong"></div>
+
+      <div id="question"></div>
+  		
+  		<div id="answers"></div>
+
+  		<div id="score"></div>
+    </div>
 	</div>
 
 
@@ -25,7 +32,7 @@
 
   <script>
   $(function() {
-    new FamilyFeud($('#answers', '#score'));
+    new FamilyFeud($('#question'), $('#answers'), $('#score'));
   })
   </script>
 
