@@ -1,41 +1,91 @@
 
-function FamilyFeud(questionDOM, sectionDOM, scoreDOM) {
+function FamilyFeud() {
+	me = this;
+
+	this.previousRounds = [];
 	this.answers = [];
 
 	this.points = 0;
-	this.stikes = 0;
 
-	this.questionDOM = questionDOM;
-	this.sectionDOM = sectionDOM;
-  	this.scoreDOM = scoreDOM;
+	this.questionDOM = $('#question');
+	this.sectionDOM = $('#answers');
+  	this.scoreDOM = $('#score');
 
-  	this.ifr = document.getElementById('sound');
   	this.gameData = GameData['FamilyFeud'];
 
   	this.setUpBuzzers();
   	this.startRound();
+
+
+  	this.sounds = {
+  		'bell':new Audio('sound/bell.mp3'),
+  		'buzzer':new Audio('sound/buzzer.mp3'),
+  		'correct':new Audio('sound/ff-clang.wav')
+  	}
+
+  	$('#next').click(function() {
+  		me.startRound();
+  	})
+
+  	$(document).keydown(function(e) {
+  		me.keydown(e.which);
+  	})
+}
+
+FamilyFeud.prototype.keydown	 = function(key) {
+	if(key == 88) { // X
+		this.strike();
+	} else if(key == 39) {
+		this.startRound();
+	} else if(key == 37) {
+		this.prevRound();
+	} else {
+		$('section#section_'+(key-49)).click();
+	}
+}
+
+FamilyFeud.prototype.reset = function() {
+	this.strikes = 0;
+	$('#wrong').empty();
+}
+
+FamilyFeud.prototype.prevRound = function() {
+	if(this.previousRounds.length > 1) {
+		this.reset();
+		this.previousRounds.pop();
+		this.round = _.last(this.previousRounds);
+		var roundData = this.gameData[this.round]
+		this.createBoard(roundData);
+	}
 }
 
 FamilyFeud.prototype.startRound = function() {
+	this.reset();
 	var roundData = this.getRoundData();
 	this.createBoard(roundData);
 }
 
 FamilyFeud.prototype.getRoundData = function() {
-	var index = Math.floor(Math.random() * this.gameData.length);
+	if(this.previousRounds.length == this.gameData.length)
+		this.previousRounds = [];
 
-	var round = this.gameData.splice(index, 1);
-	return round[0];
+	while(true) {
+		this.round = Math.floor(Math.random() * this.gameData.length);
+		if(_.indexOf(this.previousRounds, this.round) == -1)
+			break;
+	}
+	this.previousRounds.push(this.round);
+	return this.gameData[this.round];
 }
 
 FamilyFeud.prototype.createBoard = function(data) {
 	var me = this;
-	this.sectionDOM.find('section').remove();
+	this.sectionDOM.empty();
 
 	var answers = data['Answers'];
 	var question = data['Question'];
 
-	this.questionDOM.text(question);
+	this.questionDOM.html('#'+this.round + ' ' + question);
 	function helper(i) {
 		if(i < answers.length) {
 			return me.createSection(answers[i]['text'], answers[i]['points'], i);
@@ -70,16 +120,9 @@ FamilyFeud.prototype.createSection = function(answer, points, i) {
 }
 
 FamilyFeud.prototype.playSound = function(sound) {
-	var file;
-	if(sound == 'bell') {
-		file = 'ff-clang.wav';
-	} else if(sound == 'buzzer') {
-		file = 'buzzer.mp3';
-	}
-
-	if(file) {
-		this.ifr.src = file;
-	}
+	var audio = this.sounds[sound];
+	if(audio)
+		audio.play();
 }
 
 FamilyFeud.prototype.addClick = function(section) {
@@ -88,25 +131,30 @@ FamilyFeud.prototype.addClick = function(section) {
 		var answer = $(this).find('.answer');
 		if (!answer.hasClass('flipped')) {
 			answer.addClass('flipped');
-			me.playSound('bell');
+			me.playSound('correct');
 			me.addScore(parseInt(section.find('.back span').text()));
 		}
 	})
 }
 
 FamilyFeud.prototype.setUpBuzzers = function() {
+	me = this;
 	$('#strike').on('click', function() {
-		if (this.strikes < 3) {
-			this.strikes++;
-  			$('#strike-count').text(strikeCount);
-			var strike = $('<span class="wrongx">X</span>')
-			var wrong = $('#wrong');
-			wrong.append(strike);
-			playBuzzer();
-			wrong.fadeIn('fast');
-			setTimeout(function() {wrong.fadeOut('fast');}, 1500);
-		}
+		me.strike();
 	});
+}
+
+FamilyFeud.prototype.strike = function() {
+	if (this.strikes < 3) {
+		this.strikes++;
+		$('#strike-count').text(this.strikes);
+		var strike = $('<span class="wrongx">X</span>')
+		var wrong = $('#wrong');
+		wrong.append(strike);
+		this.playSound('buzzer');
+		wrong.fadeIn('fast');
+		setTimeout(function() {wrong.fadeOut('fast');}, 1500);
+	}
 }
 
 FamilyFeud.prototype.addScore = function(points) {
